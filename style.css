@@ -64,3 +64,39 @@ li span {
 #clearAll:hover {
     background: #c62828;
 }
+/* Dark Mode */
+body.dark {
+    background: #1e1e1e;
+    color: #ffffff;
+}
+
+body.dark input {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+body.dark li {
+    background: #2a2a2a;
+    color: white;
+}
+
+body.dark button {
+    background: #555;
+}
+
+body.dark button:hover {
+    background: #666;
+}
+
+#themeToggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #444;
+}
+
+body.dark #themeToggle {
+    background: #ddd;
+    color: black;
+}

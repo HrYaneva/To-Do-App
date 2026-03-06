@@ -75,3 +75,29 @@ function clearAllTasks() {
     localStorage.removeItem("tasks"); // изчистваме LocalStorage
     document.getElementById("taskList").innerHTML = ""; // изчистваме списъка
 }
+// --- Dark Mode ---
+
+// Зареждаме темата при стартиране
+window.onload = function() {
+    loadTasks();
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark");
+        document.getElementById("themeToggle").textContent = "Light Mode";
+    }
+};
+
+function toggleTheme() {
+    const body = document.body;
+    const button = document.getElementById("themeToggle");
+
+    body.classList.toggle("dark");
+
+    if (body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        button.textContent = "Light Mode";
+    } else {
+        localStorage.setItem("theme", "light");
+        button.textContent = "Dark Mode";
+    }
+}
