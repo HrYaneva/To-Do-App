@@ -159,3 +159,44 @@ li:active {
     cursor: grabbing;
     opacity: 0.7;
 }
+#topRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Двете кутии стават с еднаква височина */
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+/* Общ стил за двете кутии */
+.input-area,
+#searchArea {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 48%; /* Две равни колони */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Dark Mode */
+body.dark .input-area,
+body.dark #searchArea {
+    background: #2b2b2b;
+    border: 1px solid #444;
+}
+
+/* Подредба вътре в лявата кутия */
+.input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Подредба вътре в дясната кутия */
+#searchArea {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+}

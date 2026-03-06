@@ -11,13 +11,14 @@
     <button id="themeToggle" onclick="toggleTheme()">Dark Mode</button>
 
     <!-- Ляво поле: Въведи задача -->
+    <div id="topRow">
+
     <div class="input-area">
         <input id="taskInput" type="text" placeholder="Въведи задача...">
         <button onclick="addTask()">Добави</button>
         <button id="clearAll" onclick="clearAllTasks()">Изчисти всички</button>
     </div>
 
-    <!-- Дясно поле: Търсачка + Филтри -->
     <div id="searchArea">
         <input type="text" id="searchInput" placeholder="Търси задача..." onkeyup="searchTasks()">
 
@@ -27,6 +28,8 @@
             <button onclick="filterTasks('active')">Неготови</button>
         </div>
     </div>
+
+</div>
 
     <ul id="taskList"></ul>
 
