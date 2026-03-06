@@ -1,6 +1,15 @@
-// Зареждане на задачите при стартиране
-window.onload = loadTasks;
+// Зареждане на задачите и темата при стартиране
+window.onload = function () {
+    loadTasks();
 
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark");
+        document.getElementById("themeToggle").textContent = "Light Mode";
+    }
+};
+
+// Добавяне на задача
 function addTask() {
     const input = document.getElementById("taskInput");
     const taskText = input.value.trim();
@@ -13,6 +22,7 @@ function addTask() {
     input.value = "";
 }
 
+// Създаване на HTML елемент за задача
 function createTaskElement(taskText, completed) {
     const li = document.createElement("li");
 
@@ -21,9 +31,7 @@ function createTaskElement(taskText, completed) {
         <span onclick="removeTask(this)">❌</span>
     `;
 
-    if (completed) {
-        li.classList.add("completed");
-    }
+    if (completed) li.classList.add("completed");
 
     // Drag & Drop
     li.draggable = true;
@@ -31,12 +39,14 @@ function createTaskElement(taskText, completed) {
     li.addEventListener("dragover", dragOver);
     li.addEventListener("drop", dropTask);
 
+    // Анимация при добавяне
     li.classList.add("added");
     setTimeout(() => li.classList.remove("added"), 300);
 
     document.getElementById("taskList").appendChild(li);
 }
 
+// Маркиране като готово
 function toggleTask(element) {
     const li = element.parentElement;
     li.classList.toggle("completed");
@@ -45,6 +55,7 @@ function toggleTask(element) {
     updateTaskStatus(taskText, li.classList.contains("completed"));
 }
 
+// Премахване на задача
 function removeTask(element) {
     const li = element.parentElement;
     const taskText = li.querySelector(".task-text").textContent.trim();
@@ -54,15 +65,13 @@ function removeTask(element) {
     setTimeout(() => {
         deleteTask(taskText);
         li.remove();
-    }, 300); // колкото е анимацията
+    }, 300);
 }
 
-
-// --- LocalStorage функции ---
-
+// LocalStorage функции
 function saveTask(task, completed) {
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    tasks.push({ text: task, completed: completed });
+    tasks.push({ text: task, completed });
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
@@ -73,12 +82,7 @@ function loadTasks() {
 
 function updateTaskStatus(taskText, completed) {
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    tasks = tasks.map(t => {
-        if (t.text === taskText) {
-            return { text: t.text, completed: completed };
-        }
-        return t;
-    });
+    tasks = tasks.map(t => t.text === taskText ? { text: t.text, completed } : t);
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
@@ -87,22 +91,13 @@ function deleteTask(taskText) {
     tasks = tasks.filter(t => t.text !== taskText);
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
 function clearAllTasks() {
-    localStorage.removeItem("tasks"); // изчистваме LocalStorage
-    document.getElementById("taskList").innerHTML = ""; // изчистваме списъка
+    localStorage.removeItem("tasks");
+    document.getElementById("taskList").innerHTML = "";
 }
-// --- Dark Mode ---
 
-// Зареждаме темата при стартиране
-window.onload = function() {
-    loadTasks();
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-        document.body.classList.add("dark");
-        document.getElementById("themeToggle").textContent = "Light Mode";
-    }
-};
-
+// Dark Mode
 function toggleTheme() {
     const body = document.body;
     const button = document.getElementById("themeToggle");
@@ -117,9 +112,11 @@ function toggleTheme() {
         button.textContent = "Dark Mode";
     }
 }
+
+// Drag & Drop
 let draggedItem = null;
 
-function dragStart(e) {
+function dragStart() {
     draggedItem = this;
 }
 
@@ -146,7 +143,6 @@ function dropTask(e) {
     }
 }
 
-// Запазваме новия ред в LocalStorage
 function saveOrder() {
     let items = document.querySelectorAll("#taskList li");
     let tasks = [];
@@ -159,37 +155,28 @@ function saveOrder() {
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
+// Филтриране
 function filterTasks(type) {
     const items = document.querySelectorAll("#taskList li");
 
     items.forEach(li => {
         const isCompleted = li.classList.contains("completed");
 
-        if (type === "all") {
-            li.style.display = "flex";
-        } 
-        else if (type === "completed" && isCompleted) {
-            li.style.display = "flex";
-        } 
-        else if (type === "active" && !isCompleted) {
-            li.style.display = "flex";
-        } 
-        else {
-            li.style.display = "none";
-        }
+        if (type === "all") li.style.display = "flex";
+        else if (type === "completed" && isCompleted) li.style.display = "flex";
+        else if (type === "active" && !isCompleted) li.style.display = "flex";
+        else li.style.display = "none";
     });
 }
+
+// Търсене
 function searchTasks() {
     const query = document.getElementById("searchInput").value.toLowerCase();
     const items = document.querySelectorAll("#taskList li");
 
     items.forEach(li => {
         const text = li.querySelector(".task-text").textContent.toLowerCase();
-
-        if (text.includes(query)) {
-            li.style.display = "flex";
-        } else {
-            li.style.display = "none";
-        }
+        li.style.display = text.includes(query) ? "flex" : "none";
     });
 }

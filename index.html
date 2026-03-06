@@ -10,25 +10,26 @@
     <h1>Моите задачи</h1>
     <button id="themeToggle" onclick="toggleTheme()">Dark Mode</button>
 
-
+    <!-- Ляво поле: Въведи задача -->
     <div class="input-area">
         <input id="taskInput" type="text" placeholder="Въведи задача...">
-      
-    <input type="text" id="searchInput" placeholder="Търси задача..." onkeyup="searchTasks()">
-<div id="filters">
-    <button onclick="filterTasks('all')">Всички</button>
-    <button onclick="filterTasks('completed')">Готови</button>
-    <button onclick="filterTasks('active')">Неготови</button>
-    </div>
-
-</div>
-
         <button onclick="addTask()">Добави</button>
         <button id="clearAll" onclick="clearAllTasks()">Изчисти всички</button>
-  
+    </div>
+
+    <!-- Дясно поле: Търсачка + Филтри -->
+    <div id="searchArea">
+        <input type="text" id="searchInput" placeholder="Търси задача..." onkeyup="searchTasks()">
+
+        <div id="filters">
+            <button onclick="filterTasks('all')">Всички</button>
+            <button onclick="filterTasks('completed')">Готови</button>
+            <button onclick="filterTasks('active')">Неготови</button>
+        </div>
+    </div>
+
     <ul id="taskList"></ul>
 
     <script src="script.js"></script>
 </body>
 </html>
-
