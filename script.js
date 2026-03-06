@@ -11,6 +11,7 @@ window.onload = function () {
 
 // Добавяне на задача
 function addTask() {
+    
     const input = document.getElementById("taskInput");
     const taskText = input.value.trim();
 
@@ -18,18 +19,25 @@ function addTask() {
 
     createTaskElement(taskText, false);
     saveTask(taskText, false);
+    const category = document.getElementById("categorySelect").value;
+
+    createTaskElement(taskText, false, category);
+    saveTask(taskText, false, category);
+
 
     input.value = "";
 }
 
 // Създаване на HTML елемент за задача
-function createTaskElement(taskText, completed) {
+function createTaskElement(taskText, completed, category) {
     const li = document.createElement("li");
 
     li.innerHTML = `
         <span class="task-text" onclick="toggleTask(this)">${taskText}</span>
+        <span class="tag ${category}">${getCategoryName(category)}</span>
         <span onclick="removeTask(this)">❌</span>
     `;
+
 
     if (completed) li.classList.add("completed");
 
@@ -69,15 +77,16 @@ function removeTask(element) {
 }
 
 // LocalStorage функции
-function saveTask(task, completed) {
+function saveTask(task, completed, category) {
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    tasks.push({ text: task, completed });
+    tasks.push({ text: task, completed, category });
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+
 function loadTasks() {
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    tasks.forEach(task => createTaskElement(task.text, task.completed));
+    tasks.forEach(task => createTaskElement(task.text, task.completed, task.category));
 }
 
 function updateTaskStatus(taskText, completed) {
