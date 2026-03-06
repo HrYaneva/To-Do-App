@@ -38,3 +38,124 @@ body.dark button {
 }
 
 .input-area input {
+    padding: 10px;
+    width: 250px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Търсачка + филтри (вдясно) */
+#searchArea {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Премества всичко вдясно */
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    width: 250px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#filters {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Бутоните */
+button {
+    padding: 10px 15px;
+    border: none;
+    background: #2196F3;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1976D2;
+}
+
+#clearAll {
+    background: #e53935;
+}
+
+#clearAll:hover {
+    background: #c62828;
+}
+
+/* Списък със задачи */
+#taskList {
+    list-style: none;
+    padding: 0;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#taskList li {
+    background: white;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+    cursor: grab;
+}
+
+body.dark #taskList li {
+    background: #333;
+}
+
+/* Завършена задача */
+.completed .task-text {
+    text-decoration: line-through;
+    color: gray;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+li.removing {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+}
+
+li.added {
+    animation: popIn 0.25s ease;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Drag & Drop */
+li:active {
+    cursor: grabbing;
+    opacity: 0.7;
+}
