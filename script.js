@@ -71,3 +71,7 @@ function deleteTask(taskText) {
     tasks = tasks.filter(t => t.text !== taskText);
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+function clearAllTasks() {
+    localStorage.removeItem("tasks"); // изчистваме LocalStorage
+    document.getElementById("taskList").innerHTML = ""; // изчистваме списъка
+}

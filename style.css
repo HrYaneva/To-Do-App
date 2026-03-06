@@ -56,3 +56,11 @@ li span {
     text-decoration: line-through;
     opacity: 0.6;
 }
+#clearAll {
+    background: #e53935;
+    margin-top: 10px;
+}
+
+#clearAll:hover {
+    background: #c62828;
+}
