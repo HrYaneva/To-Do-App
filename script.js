@@ -11,22 +11,18 @@ window.onload = function () {
 
 // Добавяне на задача
 function addTask() {
-    
     const input = document.getElementById("taskInput");
     const taskText = input.value.trim();
+    const category = document.getElementById("categorySelect").value;
 
     if (taskText === "") return;
-
-    createTaskElement(taskText, false);
-    saveTask(taskText, false);
-    const category = document.getElementById("categorySelect").value;
 
     createTaskElement(taskText, false, category);
     saveTask(taskText, false, category);
 
-
     input.value = "";
 }
+
 
 // Създаване на HTML елемент за задача
 function createTaskElement(taskText, completed, category) {
