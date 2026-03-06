@@ -241,3 +241,21 @@ body.dark #searchArea {
 .tag.home { background: #43A047; }
 .tag.school { background: #FBC02D; color: black; }
 .tag.personal { background: #8E24AA; }
+#categoryFilters {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#categoryFilters button {
+    background: #6a1b9a;
+}
+
+#categoryFilters button:hover {
+    background: #4a148c;
+}
+
+body.dark #categoryFilters button {
+    background: #8e24aa;
+}

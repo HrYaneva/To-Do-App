@@ -189,3 +189,28 @@ function searchTasks() {
         li.style.display = text.includes(query) ? "flex" : "none";
     });
 }
+function filterByCategory(category) {
+    const items = document.querySelectorAll("#taskList li");
+
+    items.forEach(li => {
+        const tag = li.querySelector(".tag");
+        const taskCategory = tag ? tag.classList[1] : null;
+
+        if (category === "all") {
+            li.style.display = "flex";
+        } else if (taskCategory === category) {
+            li.style.display = "flex";
+        } else {
+            li.style.display = "none";
+        }
+    });
+}
+function getCategoryName(cat) {
+    switch(cat) {
+        case "work": return "Работа";
+        case "home": return "Дом";
+        case "school": return "Училище";
+        case "personal": return "Лични";
+        default: return "";
+    }
+}
