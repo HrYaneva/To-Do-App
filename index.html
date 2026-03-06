@@ -15,17 +15,17 @@
         <input id="taskInput" type="text" placeholder="Въведи задача...">
       
     <input type="text" id="searchInput" placeholder="Търси задача..." onkeyup="searchTasks()">
-
-</div>
-
-        <button onclick="addTask()">Добави</button>
-        <button id="clearAll" onclick="clearAllTasks()">Изчисти всички</button>
-  <div id="filters">
+<div id="filters">
     <button onclick="filterTasks('all')">Всички</button>
     <button onclick="filterTasks('completed')">Готови</button>
     <button onclick="filterTasks('active')">Неготови</button>
     </div>
 
+</div>
+
+        <button onclick="addTask()">Добави</button>
+        <button id="clearAll" onclick="clearAllTasks()">Изчисти всички</button>
+  
     <ul id="taskList"></ul>
 
     <script src="script.js"></script>
