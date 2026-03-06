@@ -159,3 +159,37 @@ function saveOrder() {
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+function filterTasks(type) {
+    const items = document.querySelectorAll("#taskList li");
+
+    items.forEach(li => {
+        const isCompleted = li.classList.contains("completed");
+
+        if (type === "all") {
+            li.style.display = "flex";
+        } 
+        else if (type === "completed" && isCompleted) {
+            li.style.display = "flex";
+        } 
+        else if (type === "active" && !isCompleted) {
+            li.style.display = "flex";
+        } 
+        else {
+            li.style.display = "none";
+        }
+    });
+}
+function searchTasks() {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const items = document.querySelectorAll("#taskList li");
+
+    items.forEach(li => {
+        const text = li.querySelector(".task-text").textContent.toLowerCase();
+
+        if (text.includes(query)) {
+            li.style.display = "flex";
+        } else {
+            li.style.display = "none";
+        }
+    });
+}
