@@ -25,6 +25,12 @@ function createTaskElement(taskText, completed) {
         li.classList.add("completed");
     }
 
+    // Drag & Drop
+    li.draggable = true;
+    li.addEventListener("dragstart", dragStart);
+    li.addEventListener("dragover", dragOver);
+    li.addEventListener("drop", dropTask);
+
     li.classList.add("added");
     setTimeout(() => li.classList.remove("added"), 300);
 
@@ -110,4 +116,46 @@ function toggleTheme() {
         localStorage.setItem("theme", "light");
         button.textContent = "Dark Mode";
     }
+}
+let draggedItem = null;
+
+function dragStart(e) {
+    draggedItem = this;
+}
+
+function dragOver(e) {
+    e.preventDefault();
+}
+
+function dropTask(e) {
+    e.preventDefault();
+    const list = document.getElementById("taskList");
+
+    if (draggedItem !== this) {
+        let items = Array.from(list.children);
+        let draggedIndex = items.indexOf(draggedItem);
+        let targetIndex = items.indexOf(this);
+
+        if (draggedIndex < targetIndex) {
+            list.insertBefore(draggedItem, this.nextSibling);
+        } else {
+            list.insertBefore(draggedItem, this);
+        }
+
+        saveOrder();
+    }
+}
+
+// Запазваме новия ред в LocalStorage
+function saveOrder() {
+    let items = document.querySelectorAll("#taskList li");
+    let tasks = [];
+
+    items.forEach(li => {
+        let text = li.querySelector(".task-text").textContent.trim();
+        let completed = li.classList.contains("completed");
+        tasks.push({ text, completed });
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
