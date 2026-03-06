@@ -13,17 +13,17 @@
 
     <div class="input-area">
         <input id="taskInput" type="text" placeholder="Въведи задача...">
-        <div id="filters">
-    <button onclick="filterTasks('all')">Всички</button>
-    <button onclick="filterTasks('completed')">Готови</button>
-    <button onclick="filterTasks('active')">Неготови</button>
+      
     <input type="text" id="searchInput" placeholder="Търси задача..." onkeyup="searchTasks()">
 
 </div>
 
         <button onclick="addTask()">Добави</button>
         <button id="clearAll" onclick="clearAllTasks()">Изчисти всички</button>
-
+  <div id="filters">
+    <button onclick="filterTasks('all')">Всички</button>
+    <button onclick="filterTasks('completed')">Готови</button>
+    <button onclick="filterTasks('active')">Неготови</button>
     </div>
 
     <ul id="taskList"></ul>
