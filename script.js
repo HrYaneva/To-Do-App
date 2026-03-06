@@ -25,6 +25,9 @@ function createTaskElement(taskText, completed) {
         li.classList.add("completed");
     }
 
+    li.classList.add("added");
+    setTimeout(() => li.classList.remove("added"), 300);
+
     document.getElementById("taskList").appendChild(li);
 }
 
@@ -37,10 +40,17 @@ function toggleTask(element) {
 }
 
 function removeTask(element) {
-    const taskText = element.parentElement.querySelector(".task-text").textContent.trim();
-    deleteTask(taskText);
-    element.parentElement.remove();
+    const li = element.parentElement;
+    const taskText = li.querySelector(".task-text").textContent.trim();
+
+    li.classList.add("removing");
+
+    setTimeout(() => {
+        deleteTask(taskText);
+        li.remove();
+    }, 300); // колкото е анимацията
 }
+
 
 // --- LocalStorage функции ---
 
