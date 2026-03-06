@@ -1,9 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="bg">
 <head>
-    <title>My ToDo App</title>
+    <meta charset="UTF-8">
+    <title>To‑Do App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Здравей, свят!</h1>
+
+    <h1>Моите задачи</h1>
+
+    <div class="input-area">
+        <input id="taskInput" type="text" placeholder="Въведи задача...">
+        <button onclick="addTask()">Добави</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
