@@ -7,42 +7,67 @@ function addTask() {
 
     if (taskText === "") return;
 
-    createTaskElement(taskText);
-    saveTask(taskText);
+    createTaskElement(taskText, false);
+    saveTask(taskText, false);
 
     input.value = "";
 }
 
-function createTaskElement(taskText) {
+function createTaskElement(taskText, completed) {
     const li = document.createElement("li");
+
     li.innerHTML = `
-        ${taskText}
+        <span class="task-text" onclick="toggleTask(this)">${taskText}</span>
         <span onclick="removeTask(this)">❌</span>
     `;
+
+    if (completed) {
+        li.classList.add("completed");
+    }
+
     document.getElementById("taskList").appendChild(li);
 }
 
+function toggleTask(element) {
+    const li = element.parentElement;
+    li.classList.toggle("completed");
+
+    const taskText = element.textContent.trim();
+    updateTaskStatus(taskText, li.classList.contains("completed"));
+}
+
 function removeTask(element) {
-    const taskText = element.parentElement.textContent.replace("❌", "").trim();
+    const taskText = element.parentElement.querySelector(".task-text").textContent.trim();
     deleteTask(taskText);
     element.parentElement.remove();
 }
 
 // --- LocalStorage функции ---
 
-function saveTask(task) {
+function saveTask(task, completed) {
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    tasks.push(task);
+    tasks.push({ text: task, completed: completed });
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function loadTasks() {
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    tasks.forEach(task => createTaskElement(task));
+    tasks.forEach(task => createTaskElement(task.text, task.completed));
 }
 
-function deleteTask(task) {
+function updateTaskStatus(taskText, completed) {
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    tasks = tasks.filter(t => t !== task);
+    tasks = tasks.map(t => {
+        if (t.text === taskText) {
+            return { text: t.text, completed: completed };
+        }
+        return t;
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function deleteTask(taskText) {
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks = tasks.filter(t => t.text !== taskText);
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
