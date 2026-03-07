@@ -10,13 +10,23 @@
 
     <h1>Моите задачи</h1>
 
-    <!-- Превключване на тема -->
-    <button id="themeToggle" type="button" onclick="toggleTheme()">Dark Mode</button>
+    <div id="topBar">
+        <button id="themeToggle" type="button" onclick="toggleDarkMode()">Dark Mode</button>
+
+        <select id="themeSelect" onchange="changeTheme(this.value)">
+            <option value="default">Тема: Стандартна</option>
+            <option value="sunset">Тема: Sunset</option>
+            <option value="ocean">Тема: Ocean</option>
+            <option value="forest">Тема: Forest</option>
+            <option value="neon">Тема: Neon</option>
+            <option value="glassblack">Тема: Glass Black</option>
+        </select>
+    </div>
 
     <!-- ДВЕТЕ КУТИИ -->
     <div id="topRow">
 
-        <!-- ЛЯВА КУТИЯ -->
+        <!-- ЛЯВА КУТИЯ: Нова задача -->
         <div class="input-area">
             <h2>Нова задача</h2>
 
@@ -33,6 +43,17 @@
                 <option value="school">Училище</option>
                 <option value="personal">Лични</option>
             </select>
+
+            <select id="prioritySelect">
+                <option value="low">🕓 Нисък приоритет</option>
+                <option value="medium">⭐ Среден приоритет</option>
+                <option value="high">🔥 Висок приоритет</option>
+            </select>
+
+            <div class="reminder-row">
+                <input id="dateInput" type="date" title="Дата за напомняне">
+                <input id="timeInput" type="time" title="Час за напомняне">
+            </div>
 
             <div class="button-row">
                 <button id="addBtn" type="button" onclick="addTask()">
@@ -51,7 +72,7 @@
             </div>
         </div>
 
-        <!-- ДЯСНА КУТИЯ -->
+        <!-- ДЯСНА КУТИЯ: Търсене, филтри, календар -->
         <div id="searchArea">
             <h2>Търсене и филтри</h2>
 
@@ -69,6 +90,13 @@
                 <button type="button" onclick="filterTasks('active')">Неготови</button>
             </div>
 
+            <div id="priorityFilters">
+                <button type="button" onclick="filterByPriority('all')">Всички приоритети</button>
+                <button type="button" onclick="filterByPriority('high')">🔥 Висок</button>
+                <button type="button" onclick="filterByPriority('medium')">⭐ Среден</button>
+                <button type="button" onclick="filterByPriority('low')">🕓 Нисък</button>
+            </div>
+
             <div id="categoryFilters">
                 <button type="button" onclick="filterByCategory('all')">Всички категории</button>
                 <button type="button" onclick="filterByCategory('work')">Работа</button>
@@ -76,12 +104,34 @@
                 <button type="button" onclick="filterByCategory('school')">Училище</button>
                 <button type="button" onclick="filterByCategory('personal')">Лични</button>
             </div>
+
+            <div id="calendarBox">
+                <h3>Календар</h3>
+                <input id="calendarInput" type="date" onchange="filterByDate(this.value)">
+            </div>
         </div>
 
     </div>
 
     <!-- СПИСЪК СЪС ЗАДАЧИ -->
-    <ul id="taskList"></ul>
+    <div id="listsWrapper">
+        <div class="category-column" data-cat="work">
+            <h3>Работа</h3>
+            <ul id="taskList-work" class="taskList"></ul>
+        </div>
+        <div class="category-column" data-cat="home">
+            <h3>Дом</h3>
+            <ul id="taskList-home" class="taskList"></ul>
+        </div>
+        <div class="category-column" data-cat="school">
+            <h3>Училище</h3>
+            <ul id="taskList-school" class="taskList"></ul>
+        </div>
+        <div class="category-column" data-cat="personal">
+            <h3>Лични</h3>
+            <ul id="taskList-personal" class="taskList"></ul>
+        </div>
+    </div>
 
     <!-- ЗВУК ПРИ ДОБАВЯНЕ -->
     <audio id="addSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7b4d1f0e4e.mp3?filename=click-124467.mp3"></audio>
