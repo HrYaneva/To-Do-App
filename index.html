@@ -2,49 +2,62 @@
 <html lang="bg">
 <head>
     <meta charset="UTF-8">
-    <title>To‑Do App</title>
+    <title>Моите задачи</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <h1>Моите задачи</h1>
-    <button id="themeToggle" onclick="toggleTheme()">Dark Mode</button>
 
-    <!-- Ляво поле: Въведи задача -->
+    <!-- Тема -->
+    <button id="themeToggle" type="button">Dark Mode</button>
+
+    <!-- Двете кутии отгоре -->
     <div id="topRow">
 
-    <div class="input-area">
-        <input id="taskInput" type="text" placeholder="Въведи задача...">
-        <button onclick="addTask()">Добави</button>
-        <button id="clearAll" onclick="clearAllTasks()">Изчисти всички</button>
-        <select id="categorySelect">
-    <option value="work">Работа</option>
-    <option value="home">Дом</option>
-    <option value="school">Училище</option>
-    <option value="personal">Лични</option>
-</select>
+        <!-- Лява кутия: добавяне на задача -->
+        <div class="input-area">
+            <h2>Нова задача</h2>
+
+            <input id="taskInput" type="text" placeholder="Въведи задача...">
+
+            <select id="categorySelect">
+                <option value="work">Работа</option>
+                <option value="home">Дом</option>
+                <option value="school">Училище</option>
+                <option value="personal">Лични</option>
+            </select>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button id="addBtn" type="button">Добави</button>
+                <button id="clearAll" type="button">Изчисти всички</button>
+            </div>
+        </div>
+
+        <!-- Дясна кутия: търсене и филтри -->
+        <div id="searchArea">
+            <h2>Търсене и филтри</h2>
+
+            <input id="searchInput" type="text" placeholder="Търси задача..." oninput="searchTasks()">
+
+            <div id="filters">
+                <button type="button" onclick="filterTasks('all')">Всички</button>
+                <button type="button" onclick="filterTasks('completed')">Готови</button>
+                <button type="button" onclick="filterTasks('active')">Неготови</button>
+            </div>
+
+            <div id="categoryFilters">
+                <button type="button" onclick="filterByCategory('all')">Всички категории</button>
+                <button type="button" onclick="filterByCategory('work')">Работа</button>
+                <button type="button" onclick="filterByCategory('home')">Дом</button>
+                <button type="button" onclick="filterByCategory('school')">Училище</button>
+                <button type="button" onclick="filterByCategory('personal')">Лични</button>
+            </div>
+        </div>
 
     </div>
 
-    <div id="searchArea">
-        <input type="text" id="searchInput" placeholder="Търси задача..." onkeyup="searchTasks()">
-
-        <div id="filters">
-            <button onclick="filterTasks('all')">Всички</button>
-            <button onclick="filterTasks('completed')">Готови</button>
-            <button onclick="filterTasks('active')">Неготови</button>
-        </div>
-        <div id="categoryFilters">
-            <button onclick="filterByCategory('all')">Всички категории</button>
-            <button onclick="filterByCategory('work')">Работа</button>
-            <button onclick="filterByCategory('home')">Дом</button>
-             <button onclick="filterByCategory('school')">Училище</button>
-            <button onclick="filterByCategory('personal')">Лични</button>
-        </div>
-    </div>
-
-</div>
-
+    <!-- Списък със задачи -->
     <ul id="taskList"></ul>
 
     <script src="script.js"></script>
