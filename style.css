@@ -13,7 +13,7 @@ button {
     -webkit-backdrop-filter: blur(12px);
 
     /* Светла рамка + сянка */
-    box-shadow: 
+    box-shadow:
         0 4px 12px rgba(0,0,0,0.15),
         inset 0 0 0 1px rgba(255,255,255,0.25);
 
@@ -25,7 +25,7 @@ button {
 button:hover {
     background: rgba(255, 255, 255, 0.25);
     transform: translateY(-2px);
-    box-shadow: 
+    box-shadow:
         0 6px 16px rgba(0,0,0,0.22),
         inset 0 0 0 1px rgba(255,255,255,0.35);
 }
@@ -33,7 +33,7 @@ button:hover {
 /* Натиснат бутон */
 button:active {
     transform: scale(0.97);
-    box-shadow: 
+    box-shadow:
         0 3px 8px rgba(0,0,0,0.2),
         inset 0 0 0 1px rgba(255,255,255,0.25);
 }
@@ -62,7 +62,7 @@ body.dark button {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.2);
     color: #eee;
-    box-shadow: 
+    box-shadow:
         0 4px 12px rgba(0,0,0,0.4),
         inset 0 0 0 1px rgba(255,255,255,0.15);
 }
@@ -79,3 +79,4 @@ body.dark button:hover {
         font-size: 16px;
     }
 }
+
