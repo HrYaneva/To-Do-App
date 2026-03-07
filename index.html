@@ -5,17 +5,18 @@
     <title>Моите задачи</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <h1>Моите задачи</h1>
 
-    <!-- Тема -->
-    <button id="themeToggle" type="button">Dark Mode</button>
+    <!-- Превключване на тема -->
+    <button id="themeToggle" type="button" onclick="toggleTheme()">Dark Mode</button>
 
-    <!-- Двете кутии отгоре -->
+    <!-- ДВЕТЕ КУТИИ -->
     <div id="topRow">
 
-        <!-- Лява кутия: добавяне на задача -->
+        <!-- ЛЯВА КУТИЯ -->
         <div class="input-area">
             <h2>Нова задача</h2>
 
@@ -28,13 +29,13 @@
                 <option value="personal">Лични</option>
             </select>
 
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <button id="addBtn" type="button">Добави</button>
-                <button id="clearAll" type="button">Изчисти всички</button>
+            <div class="button-row">
+                <button id="addBtn" type="button" onclick="addTask()">Добави</button>
+                <button id="clearAll" type="button" onclick="clearAllTasks()">Изчисти всички</button>
             </div>
         </div>
 
-        <!-- Дясна кутия: търсене и филтри -->
+        <!-- ДЯСНА КУТИЯ -->
         <div id="searchArea">
             <h2>Търсене и филтри</h2>
 
@@ -57,7 +58,7 @@
 
     </div>
 
-    <!-- Списък със задачи -->
+    <!-- СПИСЪК СЪС ЗАДАЧИ -->
     <ul id="taskList"></ul>
 
     <script src="script.js"></script>
