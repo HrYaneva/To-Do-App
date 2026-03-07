@@ -1,4 +1,88 @@
-/* 🧊 Glassmorphism бутони – красиви и четими */
+/* ===========================
+   🧊 ОСНОВНИ СТИЛОВЕ
+=========================== */
+body {
+    font-family: Arial, sans-serif;
+    background: #e3e3e3;
+    color: #222;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+/* Dark Mode */
+body.dark {
+    background: #1e1e1e;
+    color: #eee;
+}
+
+/* ===========================
+   🧊 GLASSMORPHISM КУТИИ
+=========================== */
+#topRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.input-area,
+#searchArea {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.15),
+        inset 0 0 0 1px rgba(255,255,255,0.25);
+
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+body.dark .input-area,
+body.dark #searchArea {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.5),
+        inset 0 0 0 1px rgba(255,255,255,0.15);
+}
+
+/* ===========================
+   🧊 INPUT ПОЛЕТА
+=========================== */
+input, select {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 15px;
+}
+
+body.dark input,
+body.dark select {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.25);
+    color: #eee;
+}
+
+/* ===========================
+   🧊 GLASSMORPHISM БУТОНИ
+=========================== */
 button {
     padding: 12px 22px;
     font-size: 15px;
@@ -6,22 +90,19 @@ button {
     border-radius: 12px;
     cursor: pointer;
 
-    /* Стъклен ефект */
-    background: rgba(255, 255, 255, 0.28); /* по-плътно за четимост */
+    background: rgba(255, 255, 255, 0.28);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 
-    /* Рамка и сянка */
     border: 1px solid rgba(255, 255, 255, 0.45);
     box-shadow:
         0 4px 12px rgba(0,0,0,0.18),
         inset 0 0 0 1px rgba(255,255,255,0.35);
 
-    color: #111; /* тъмен текст за максимална четимост */
+    color: #111;
     transition: 0.25s ease;
 }
 
-/* Hover ефект */
 button:hover {
     background: rgba(255, 255, 255, 0.38);
     transform: translateY(-2px);
@@ -30,15 +111,11 @@ button:hover {
         inset 0 0 0 1px rgba(255,255,255,0.45);
 }
 
-/* Натиснат бутон */
 button:active {
     transform: scale(0.97);
-    box-shadow:
-        0 3px 8px rgba(0,0,0,0.2),
-        inset 0 0 0 1px rgba(255,255,255,0.3);
 }
 
-/* 🎨 Цветни акценти – четими и красиви */
+/* Цветни бутони */
 #addBtn {
     background: rgba(76, 175, 80, 0.35);
     border-color: rgba(76, 175, 80, 0.55);
@@ -59,14 +136,11 @@ button:active {
     background: rgba(229, 57, 53, 0.45);
 }
 
-/* 🌙 Dark Mode – по-дълбоко стъкло */
+/* Dark Mode бутони */
 body.dark button {
     background: rgba(255, 255, 255, 0.12);
     border-color: rgba(255, 255, 255, 0.25);
     color: #eee;
-    box-shadow:
-        0 4px 12px rgba(0,0,0,0.5),
-        inset 0 0 0 1px rgba(255,255,255,0.15);
 }
 
 body.dark #addBtn {
@@ -77,8 +151,88 @@ body.dark #clearAll {
     background: rgba(229, 57, 53, 0.28);
 }
 
-/* 📱 Мобилен изглед */
+/* ===========================
+   🧊 СПИСЪК СЪС ЗАДАЧИ
+=========================== */
+#taskList {
+    list-style: none;
+    padding: 0;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#taskList li {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.15),
+        inset 0 0 0 1px rgba(255,255,255,0.25);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    animation: fadeIn 0.3s ease;
+    cursor: grab;
+}
+
+#taskList li .task-text {
+    font-weight: 500;
+    color: #111;
+}
+
+body.dark #taskList li {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.20);
+}
+
+body.dark #taskList li .task-text {
+    color: #eee;
+}
+
+/* Категории */
+.tag {
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+}
+
+.tag.work { background: #1976D2; }
+.tag.home { background: #43A047; }
+.tag.school { background: #FBC02D; color: black; }
+.tag.personal { background: #8E24AA; }
+
+/* ===========================
+   🧊 АНИМАЦИИ
+=========================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===========================
+   📱 RESPONSIVE
+=========================== */
 @media (max-width: 768px) {
+    #topRow {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .input-area,
+    #searchArea {
+        width: 100%;
+    }
+
     button {
         width: auto;
         padding: 14px 24px;
