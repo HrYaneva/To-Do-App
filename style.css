@@ -1,261 +1,81 @@
-/* Основни стилове */
-body {
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
-    color: #222;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-}
-
-h1 {
-    margin-bottom: 10px;
-}
-
-/* Dark Mode */
-body.dark {
-    background: #1e1e1e;
-    color: #eee;
-}
-
-body.dark input,
-body.dark button {
-    background: #333;
-    color: white;
-    border: 1px solid #555;
-}
-
-#themeToggle {
-    margin-bottom: 20px;
-}
-
-/* Поле за въвеждане на задача */
-.input-area {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.input-area input {
-    padding: 10px;
-    width: 250px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-/* Търсачка + филтри (вдясно) */
-#searchArea {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end; /* Премества всичко вдясно */
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-#searchInput {
-    width: 250px;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-#filters {
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-}
-
-/* Бутоните */
+/* 🧊 Glassmorphism бутони */
 button {
-    padding: 10px 15px;
-    border: none;
-    background: #2196F3;
-    color: white;
-    border-radius: 4px;
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 12px;
     cursor: pointer;
+
+    /* Стъклен ефект */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    /* Светла рамка + сянка */
+    box-shadow: 
+        0 4px 12px rgba(0,0,0,0.15),
+        inset 0 0 0 1px rgba(255,255,255,0.25);
+
+    color: #fff;
+    transition: 0.25s ease;
 }
 
+/* Hover ефект */
 button:hover {
-    background: #1976D2;
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 16px rgba(0,0,0,0.22),
+        inset 0 0 0 1px rgba(255,255,255,0.35);
+}
+
+/* Натиснат бутон */
+button:active {
+    transform: scale(0.97);
+    box-shadow: 
+        0 3px 8px rgba(0,0,0,0.2),
+        inset 0 0 0 1px rgba(255,255,255,0.25);
+}
+
+/* 🎨 Цветни акценти за конкретните бутони */
+#addBtn {
+    background: rgba(76, 175, 80, 0.25);
+    border-color: rgba(76, 175, 80, 0.4);
+}
+
+#addBtn:hover {
+    background: rgba(76, 175, 80, 0.35);
 }
 
 #clearAll {
-    background: #e53935;
+    background: rgba(229, 57, 53, 0.25);
+    border-color: rgba(229, 57, 53, 0.4);
 }
 
 #clearAll:hover {
-    background: #c62828;
+    background: rgba(229, 57, 53, 0.35);
 }
 
-/* Списък със задачи */
-#taskList {
-    list-style: none;
-    padding: 0;
-    max-width: 500px;
-    margin: 0 auto;
+/* 🌙 Dark Mode — по‑дълбоко стъкло */
+body.dark button {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #eee;
+    box-shadow: 
+        0 4px 12px rgba(0,0,0,0.4),
+        inset 0 0 0 1px rgba(255,255,255,0.15);
 }
 
-#taskList li {
-    background: white;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    animation: fadeIn 0.3s ease;
-    cursor: grab;
+body.dark button:hover {
+    background: rgba(255, 255, 255, 0.15);
 }
 
-body.dark #taskList li {
-    background: #333;
-}
-
-/* Завършена задача */
-.completed .task-text {
-    text-decoration: line-through;
-    color: gray;
-}
-
-/* Анимации */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-li.removing {
-    animation: fadeOut 0.3s ease forwards;
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-}
-
-li.added {
-    animation: popIn 0.25s ease;
-}
-
-@keyframes popIn {
-    0% { transform: scale(0.9); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* Drag & Drop */
-li:active {
-    cursor: grabbing;
-    opacity: 0.7;
-}
-#topRow {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch; /* Двете кутии стават с еднаква височина */
-    gap: 20px;
-    width: 100%;
-    margin-bottom: 25px;
-}
-
-/* Общ стил за двете кутии */
-.input-area,
-#searchArea {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    width: 48%; /* Две равни колони */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* Dark Mode */
-body.dark .input-area,
-body.dark #searchArea {
-    background: #2b2b2b;
-    border: 1px solid #444;
-}
-
-/* Подредба вътре в лявата кутия */
-.input-area {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* Подредба вътре в дясната кутия */
-#searchArea {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-end;
-}
-/* 📱 Responsive дизайн за телефони */
+/* 📱 Мобилен изглед */
 @media (max-width: 768px) {
-
-    #topRow {
-        flex-direction: column; /* Пада една под друга */
-        gap: 15px;
-    }
-
-    .input-area,
-    #searchArea {
-        width: 100%; /* Вече заемат цялата ширина */
-    }
-
-    #searchArea {
-        align-items: stretch; /* Търсачката вече не е вдясно */
-    }
-
-    #searchInput {
-        width: 100%;
-    }
-
-    #filters {
-        justify-content: space-between;
-        width: 100%;
-    }
-
     button {
-        width: 100%; /* Бутоните стават големи и удобни */
+        width: auto;
+        padding: 14px 24px;
+        font-size: 16px;
     }
-}
-.tag {
-    padding: 3px 8px;
-    border-radius: 6px;
-    font-size: 12px;
-    color: white;
-}
-
-.tag.work { background: #1976D2; }
-.tag.home { background: #43A047; }
-.tag.school { background: #FBC02D; color: black; }
-.tag.personal { background: #8E24AA; }
-#categoryFilters {
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-#categoryFilters button {
-    background: #6a1b9a;
-}
-
-#categoryFilters button:hover {
-    background: #4a148c;
-}
-
-body.dark #categoryFilters button {
-    background: #8e24aa;
 }
